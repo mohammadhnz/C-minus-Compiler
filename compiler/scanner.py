@@ -5,10 +5,10 @@ class Scanner:
     def __init__(self, input_code):
         self.code = input_code
         self.line_number = 1
-        # keywords = ["if", "else", "void", "int", "repeat", "break", "until", "return"]
-        # symbols = [
-        #     ";", ":", ",", "\[", "\]", "\(", "\)", "\{", "\}", "\+", "\-", "\*", "=", "<", "=="
-        # ]
+        self.keywords = ["if", "else", "void", "int", "repeat", "break", "until", "return"]
+        symbols = [
+            ";", ":", ",", "\[", "\]", "\(", "\)", "\{", "\}", "\+", "\-", "\*", "=", "<", "=="
+        ]
         # self.patterns = [
         #     ("NUM", r'(\d+).*'),
         #     ("KEYWORD", "(" + "|".join(keywords) + ").*"),
@@ -29,7 +29,7 @@ class Scanner:
             word += character
             if not self.code:
                 break
-        return self.line_number, TOKEN_NAMES[current_state], word
+        return self.line_number, TOKEN_NAMES[self.get_state(current_state, word)], word
 
     def _handle_extra_readed_character(self, character):
         if ord(character) == 10:
@@ -48,5 +48,8 @@ class Scanner:
                 return next_state
         return -1
 
-    def find_num(self):
-        pass
+
+    def get_state(self, state, word):
+        if state in [States.ID_DETECTED, States.ID_FINISHED] and word in self.keywords:
+            return States.KEYWORD
+        return state
