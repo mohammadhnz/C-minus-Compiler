@@ -10,7 +10,8 @@ def read_input_file():
 
 def run():
     data = read_input_file()
-    scanner = Scanner("123456d    12348\n   12345")
+    # scanner = Scanner("123!456d    12348\n   12345")
+    scanner = Scanner("void ali = < > ==")
     tokens = defaultdict(list)
     errs = defaultdict
     while scanner.code:
