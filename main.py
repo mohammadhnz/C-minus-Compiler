@@ -10,14 +10,12 @@ def read_input_file():
 
 def run():
     data = read_input_file()
-    scanner = Scanner(data)
+    scanner = Scanner("123456d    12348\n   12345")
     tokens = defaultdict(list)
     errs = defaultdict
     while scanner.code:
-        line, err, token = scanner.get_next_token()
-        if err != None:
-            print("err")
+        token = scanner.get_next_token()
         print(token)
-        break
+
 
 run()
