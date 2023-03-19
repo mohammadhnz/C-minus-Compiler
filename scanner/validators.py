@@ -15,10 +15,27 @@ def is_letter_or_digit(character: str):
 
 
 def is_symbol(character: str):
-    return character in [";", ":", ",", "[", "]", "(", ")", "{", "}", "+", "-", "*", "<"]
+    return character in [";", ":", ",", "[", "]", "(", ")", "{", "}", "+", "-", "<"]
+
+
+def is_star(character: str):
+    return character == '*'
+
+
+def is_slash(character: str):
+    return character == '/'
+
 
 def is_equal_sign(character: str):
     return character == "="
 
+
 def is_invalid(character: str):
-    return not (is_letter_or_digit(character) or is_whitespace(character) or is_symbol(character) or is_equal_sign(character))
+    return not (
+            is_letter_or_digit(character) or
+            is_whitespace(character) or
+            is_symbol(character) or
+            is_equal_sign(character) or
+            is_slash(character) or
+            is_star(character)
+    )

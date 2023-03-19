@@ -1,11 +1,11 @@
-from compiler.states import States, ACCEPT_STATES, transitions, TOKEN_NAMES, ERROR_STATES
+from scanner.states import States, ACCEPT_STATES, transitions, TOKEN_NAMES, ERROR_STATES
 
 
 class Scanner:
     def __init__(self, input_code):
         self.code = input_code
         self.line_number = 1
-        self.keywords = ["if", "else", "void", "int", "repeat", "break", "until", "return"]
+        self.keywords = ["break", "else", "if", "int", "repeat", "return", "until", "void" ]
         symbols = [
             ";", ":", ",", "\[", "\]", "\(", "\)", "\{", "\}", "\+", "\-", "\*", "=", "<", "=="
         ]
@@ -19,6 +19,7 @@ class Scanner:
     def get_next_token(self):
         current_state = States.INITIALIZE
         word = ""
+        line_number = self.line_number
         while current_state not in ACCEPT_STATES + ERROR_STATES:
             character = self._read_first_character()
             state = self.get_next_state(current_state, character)
@@ -29,7 +30,7 @@ class Scanner:
             word += character
             if not self.code:
                 break
-        return self.line_number, TOKEN_NAMES[self.get_state(current_state, word)], word
+        return line_number, TOKEN_NAMES[self.get_state(current_state, word)], word
 
     def _handle_extra_readed_character(self, character):
         if ord(character) == 10:
@@ -47,7 +48,6 @@ class Scanner:
             if is_valid(character):
                 return next_state
         return -1
-
 
     def get_state(self, state, word):
         if state in [States.ID_DETECTED, States.ID_FINISHED] and word in self.keywords:
