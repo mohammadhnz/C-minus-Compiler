@@ -1,20 +1,21 @@
+from collections import defaultdict
+
 from scanner.states import States, ACCEPT_STATES, transitions, TOKEN_NAMES, ERROR_STATES
+from scanner.logger import TokenLogger, LexicalErrorsLogger, SymbolsLogger
 
 
 class Scanner:
-    def __init__(self, input_code):
-        self.code = input_code
+    def __init__(self):
+        self.code = self.read_input_file()
         self.line_number = 1
-        self.keywords = ["break", "else", "if", "int", "repeat", "return", "until", "void" ]
-        symbols = [
-            ";", ":", ",", "\[", "\]", "\(", "\)", "\{", "\}", "\+", "\-", "\*", "=", "<", "=="
-        ]
-        # self.patterns = [
-        #     ("NUM", r'(\d+).*'),
-        #     ("KEYWORD", "(" + "|".join(keywords) + ").*"),
-        #     ("ID", r'([A-Za-z][A-Za-z0-9]*).*'),
-        #     ("SYMBOL", "(" + "|".join(symbols) + ").*"),
-        # ]
+        self.keywords = ["break", "else", "if", "int", "repeat", "return", "until", "void"]
+        self.tokens = defaultdict(list)
+        self.lexical_errors = defaultdict(list)
+        self.symbols = self.keywords.copy()
+
+    def read_input_file(self):
+        with open("input.txt", "r") as file:
+            return file.read()
 
     def get_next_token(self):
         current_state = States.INITIALIZE
@@ -30,6 +31,7 @@ class Scanner:
             word += character
             if not self.code:
                 break
+        self._log_token(line_number, TOKEN_NAMES[self.get_state(current_state, word)], word)
         return line_number, TOKEN_NAMES[self.get_state(current_state, word)], word
 
     def _handle_extra_readed_character(self, character):
@@ -53,3 +55,17 @@ class Scanner:
         if state in [States.ID_DETECTED, States.ID_FINISHED] and word in self.keywords:
             return States.KEYWORD
         return state
+
+    def _log_token(self, line_number, token_name, word):
+        if token_name in ["Unmatched comment", "Invalid number", "Invalid input", "Unclosed comment"]:
+            self.lexical_errors[line_number].append((word, token_name))
+        elif token_name in ["white space", "COMMENT"]:
+            return
+        else:
+            if token_name in ["KEYWORD", "ID"]:
+                if word not in self.symbols:
+                    self.symbols.append(word)
+            self.tokens[line_number].append((token_name, word.strip()))
+        TokenLogger(self.tokens).log()
+        SymbolsLogger(self.symbols).log()
+        LexicalErrorsLogger(self.lexical_errors).log()
