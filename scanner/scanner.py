@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 from scanner.states import States, ACCEPT_STATES, transitions, TOKEN_NAMES, ERROR_STATES
-from scanner.logger import TokenLogger, LexicalErrorsLogger, SymbolsLogger
+from _utils.logger import TokenLogger, LexicalErrorsLogger, SymbolsLogger
 
 
 class Scanner:

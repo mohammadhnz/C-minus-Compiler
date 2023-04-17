@@ -1,0 +1,227 @@
+{
+  "Program": [
+    "int",
+    "void",
+    "\u03b5"
+  ],
+  "Declaration_list": [
+    "int",
+    "void",
+    "\u03b5"
+  ],
+  "Declaration": [
+    "int",
+    "void"
+  ],
+  "Declaration_initial": [
+    "int",
+    "void"
+  ],
+  "Declaration_prime": [
+    ";",
+    "[",
+    "("
+  ],
+  "Var_declaration_prime": [
+    ";",
+    "["
+  ],
+  "Fun_declaration_prime": [
+    "("
+  ],
+  "Type_specifier": [
+    "int",
+    "void"
+  ],
+  "Params": [
+    "int",
+    "void"
+  ],
+  "Param_list": [
+    ",",
+    "\u03b5"
+  ],
+  "Param": [
+    "int",
+    "void"
+  ],
+  "Param_prime": [
+    "[",
+    "\u03b5"
+  ],
+  "Compound_stmt": [
+    "{"
+  ],
+  "Statement_list": [
+    "ID",
+    ";",
+    "NUM",
+    "(",
+    "{",
+    "break",
+    "if",
+    "repeat",
+    "return",
+    "\u03b5"
+  ],
+  "Statement": [
+    "ID",
+    ";",
+    "NUM",
+    "(",
+    "{",
+    "break",
+    "if",
+    "repeat",
+    "return"
+  ],
+  "Expression_stmt": [
+    "ID",
+    ";",
+    "NUM",
+    "(",
+    "break"
+  ],
+  "Selection_stmt": [
+    "if"
+  ],
+  "Iteration_stmt": [
+    "repeat"
+  ],
+  "Return_stmt": [
+    "return"
+  ],
+  "Return_stmt_prime": [
+    "ID",
+    ";",
+    "NUM",
+    "("
+  ],
+  "Expression": [
+    "ID",
+    "NUM",
+    "("
+  ],
+  "B": [
+    "[",
+    "(",
+    "=",
+    "<",
+    "==",
+    "+",
+    "-",
+    "*",
+    "\u03b5"
+  ],
+  "H": [
+    "=",
+    "<",
+    "==",
+    "+",
+    "-",
+    "*",
+    "\u03b5"
+  ],
+  "Simple_expression_zegond": [
+    "NUM",
+    "("
+  ],
+  "Simple_expression_prime": [
+    "(",
+    "<",
+    "==",
+    "+",
+    "-",
+    "*",
+    "\u03b5"
+  ],
+  "C": [
+    "<",
+    "==",
+    "\u03b5"
+  ],
+  "Relop": [
+    "<",
+    "=="
+  ],
+  "Additive_expression": [
+    "ID",
+    "NUM",
+    "("
+  ],
+  "Additive_expression_prime": [
+    "(",
+    "+",
+    "-",
+    "*",
+    "\u03b5"
+  ],
+  "Additive_expression_zegond": [
+    "NUM",
+    "("
+  ],
+  "D": [
+    "+",
+    "-",
+    "\u03b5"
+  ],
+  "Addop": [
+    "+",
+    "-"
+  ],
+  "Term": [
+    "ID",
+    "NUM",
+    "("
+  ],
+  "Term_prime": [
+    "(",
+    "*",
+    "\u03b5"
+  ],
+  "Term_zegond": [
+    "NUM",
+    "("
+  ],
+  "G": [
+    "*",
+    "\u03b5"
+  ],
+  "Factor": [
+    "ID",
+    "NUM",
+    "("
+  ],
+  "Var_call_prime": [
+    "[",
+    "(",
+    "\u03b5"
+  ],
+  "Var_prime": [
+    "[",
+    "\u03b5"
+  ],
+  "Factor_prime": [
+    "(",
+    "\u03b5"
+  ],
+  "Factor_zegond": [
+    "NUM",
+    "("
+  ],
+  "Args": [
+    "ID",
+    "NUM",
+    "(",
+    "\u03b5"
+  ],
+  "Arg_list": [
+    "ID",
+    "NUM",
+    "("
+  ],
+  "Arg_list_prime": [
+    ",",
+    "\u03b5"
+  ]
+}
