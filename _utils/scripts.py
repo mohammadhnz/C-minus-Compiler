@@ -1,5 +1,4 @@
 import json
-from pprint import pprint
 
 
 def extract_grammer():
@@ -15,7 +14,6 @@ def extract_grammer():
                 left.replace("-", "_"),
                 right.replace("-", "_") if right.strip() != "-" else right
             )
-
 
 
 def run_command():
