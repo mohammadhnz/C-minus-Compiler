@@ -18,6 +18,8 @@ class Scanner:
             return file.read()
 
     def get_next_token(self):
+        if not self.code:
+            return "$", "$"
         current_state = States.INITIALIZE
         word = ""
         line_number = self.line_number
@@ -31,8 +33,10 @@ class Scanner:
             word += character
             if not self.code:
                 break
-        self._log_token(line_number, TOKEN_NAMES[self.get_state(current_state, word)], word)
-        return line_number, TOKEN_NAMES[self.get_state(current_state, word)], word
+        # self._log_token(line_number, TOKEN_NAMES[self.get_state(current_state, word)], word)
+        if TOKEN_NAMES[self.get_state(current_state, word)] in ['COMMENT', 'white space']:
+            return self.get_next_token()
+        return TOKEN_NAMES[self.get_state(current_state, word)], word
 
     def _handle_extra_readed_character(self, character):
         if ord(character) == 10:
