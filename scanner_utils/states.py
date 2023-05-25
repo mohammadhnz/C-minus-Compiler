@@ -1,4 +1,4 @@
-from .validators import is_digit, is_letter, is_whitespace, is_letter_or_digit, is_invalid, is_symbol, is_equal_sign, \
+from scanner_utils.validators import is_digit, is_letter, is_whitespace, is_letter_or_digit, is_invalid, is_symbol, is_equal_sign, \
     is_slash, is_star
 
 

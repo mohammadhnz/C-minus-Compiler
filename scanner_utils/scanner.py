@@ -1,7 +1,7 @@
 from collections import defaultdict
 
-from scanner.states import States, ACCEPT_STATES, transitions, TOKEN_NAMES, ERROR_STATES
-from _utils.logger import TokenLogger, LexicalErrorsLogger, SymbolsLogger
+from scanner_utils.states import States, ACCEPT_STATES, transitions, TOKEN_NAMES, ERROR_STATES
+from scanner_utils.logger import TokenLogger, LexicalErrorsLogger, SymbolsLogger
 
 
 class Scanner:
@@ -19,7 +19,7 @@ class Scanner:
 
     def get_next_token(self):
         if not self.code:
-            return "$", "$"
+            return "$", "$", self.line_number
         current_state = States.INITIALIZE
         word = ""
         line_number = self.line_number
@@ -36,7 +36,7 @@ class Scanner:
         # self._log_token(line_number, TOKEN_NAMES[self.get_state(current_state, word)], word)
         if TOKEN_NAMES[self.get_state(current_state, word)] in ['COMMENT', 'white space']:
             return self.get_next_token()
-        return TOKEN_NAMES[self.get_state(current_state, word)], word
+        return TOKEN_NAMES[self.get_state(current_state, word)], word, self.line_number
 
     def _handle_extra_readed_character(self, character):
         if ord(character) == 10:

@@ -1,4 +1,4 @@
-	ID	;	[	NUM	]	(	)	int	void	,	{	}	break	if	else	repeat	until	return	=	<	==	+	-	*	ε
+	ID	;	[	NUM	]	(	)	int	void	,	{	}	break	if	else	repeat	until	return	=	<	==	+	-	*	EPSILON
 Program	−	−	−	−	−	−	−	+	+	−	−	−	−	−	−	−	−	−	−	−	−	−	−	−	+
 Declaration_list	−	−	−	−	−	−	−	+	+	−	−	−	−	−	−	−	−	−	−	−	−	−	−	−	+
 Declaration	−	−	−	−	−	−	−	+	+	−	−	−	−	−	−	−	−	−	−	−	−	−	−	−	−

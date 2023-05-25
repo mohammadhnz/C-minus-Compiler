@@ -1,6 +1,3 @@
-import json
-from typing import List
-
 grammer = """
 Program⟶  Declaration_list
 Declaration_list⟶  Declaration Declaration_list
@@ -196,19 +193,24 @@ class TransitionDiagram:
         self.paths = []
         self.epsilon = False
 
-    def add_new_path(self, path: List[NonTerminal | str]):
+    def add_new_path(self, path):
         if "\u03b5" in path or 'EPSILON' in path:
             self.epsilon = True
             return
-        self.paths.append(path)
+        first_set = set()
+        follow_set = set()
+        for item in path:
+            if isinstance(item, NonTerminal):
+                first_set.update(item.first_set)
+                if 'ε' not in item.first_set:
+                    break
+            else:
+                first_set.add(item)
+                break
+        self.paths.append((first_set, path))
 
 
 def initialize_states():
-    # dirname = os.path.dirname(__file__)
-    # filename = os.path.join(dirname, 'first_sets.json')
-    # first_sets = json.load(open(os.path.join(dirname, 'first_sets.json'), "r"))
-    # follow_sets = json.load(open(os.path.join(dirname, 'follow_sets.json'), "r"))
-    # production_rules = open(os.path.join(dirname, 'grammer.txt'), "r").readlines()
     production_rules = grammer.strip().split("\n")
     states = dict()
     for key, value in first_sets.items():
@@ -226,16 +228,4 @@ def initialize_states():
             for transition in transitions
         ]
         non_terminal.transition_diagram.add_new_path(transitions)
-    # for name, state in states.items():
-    #     print(state.name)
-    #     print("\t", "follow_set: ", state.follow_set)
-    #     print("\t", "first_set: ", state.first_set)
-    #     print("paths:")
-    #     for path in state.transition_diagram.paths:
-    #         print("\t", path)
-    #     print()
-    # print("Success")
     return states
-
-
-states = initialize_states()
