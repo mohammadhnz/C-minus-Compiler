@@ -1,10 +1,16 @@
-from scanner.scanner import Scanner
+from parser_utils.code_generator import log_codes
+from parser_utils.parser import Parser
+from scanner_utils.scanner import Scanner
 
 
 def run():
-    scanner = Scanner()
-    while scanner.code:
-        scanner.get_next_token()
+    try:
+        scanner = Scanner()
+        parser = Parser(scanner)
+        parser.parse()
+    except:
+        pass
+    log_codes()
 
 
 run()
